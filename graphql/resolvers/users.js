@@ -12,6 +12,7 @@ const resolvers = {
         //Client tarafindan istenen kolonlari bu sekilde degiskene atabilirsin.
         const topLevelFields = Object.keys(graphqlFields(info));
         console.log("topLevelFields: ", topLevelFields);
+        //populate ile posts referanslarının verilerinin de gelmesini sağladık.
         const allUsers = await userSchema.find(null, topLevelFields).populate('posts');;
         console.log("allUsers: ", allUsers);
         return allUsers;
@@ -23,6 +24,7 @@ const resolvers = {
     getUser: async (_, { userId }, __, info) => {
       try {
         const topLevelFields = Object.keys(graphqlFields(info));
+        //populate ile posts referanslarının verilerinin de gelmesini sağladık.
         const user = await userSchema.findById(userId, topLevelFields).populate('posts');
         console.log('user: ', user);
         return user;
