@@ -41,6 +41,13 @@ const resolvers = {
         const post = await (await postSchema.create(body)).populate("user");
         console.log("post: ", post);
 
+        // İlgili kullanıcıyı bulun ve posts alanına yeni post ID'sini ekleyin
+        await userSchema.findByIdAndUpdate(
+          post.user,
+          { $push: { posts: post._id } },
+          { new: true }
+        );
+
         return post;
       } catch (error) {
         console.log(error);
