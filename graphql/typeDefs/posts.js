@@ -7,6 +7,7 @@ const typeDefs = `#graphql
     title: String!
     description: String!
     url: String!
+    user: User
   }
 
   # The "Query" type is special: it lists all of the available queries that
@@ -22,6 +23,7 @@ const typeDefs = `#graphql
     title: String!
     description: String!
     url: String!
+    user: ID!
   }
 
   extend type Mutation {

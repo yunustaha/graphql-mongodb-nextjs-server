@@ -39,7 +39,8 @@ const resolvers = {
     //Burada typeDefs'te parametre olarak gonderdigimiz body'i bu sekilde kullaniyoruz.
     createUser: async (_, { body }) => {
       try {
-        const user = await userSchema.create(body);
+        const user = await (await userSchema.create(body)).populate('posts');
+        console.log('user: ', user);
         return user;
       } catch (error) {
         console.log(error);
