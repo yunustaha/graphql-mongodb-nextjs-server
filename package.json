@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@apollo/server": "^4.10.3",
+    "@types/mongoose": "^5.11.97",
+    "dotenv": "^16.4.5",
+    "graphql": "^16.8.1",
+    "graphql-fields": "^2.0.3",
+    "mogoose": "^0.0.1-security",
+    "mongoose": "^8.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
