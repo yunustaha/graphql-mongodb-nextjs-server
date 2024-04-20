@@ -1,4 +1,4 @@
-import postSchema from "../../models/post.js";
+import postSchema from "../../models/posts.js";
 import graphqlFields from "graphql-fields";
 
 const resolvers = {

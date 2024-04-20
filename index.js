@@ -1,14 +1,28 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { config } from "dotenv";
-import typeDefs from "./graphql/typeDefs/typeDefs.js";
-import resolvers from "./graphql/resolvers/post.js";
+import lodash from "lodash";
+import postTypeDefs from "./graphql/typeDefs/posts.js";
+import usersTypeDefs from "./graphql/typeDefs/users.js";
+import postsResolver from "./graphql/resolvers/posts.js";
+import usersResolver from "./graphql/resolvers/users.js";
 import db from "./config/database.js";
 
 config();
+
+const baseTypes = `#graphql
+  type Query {
+    _empty: String
+  }
+
+  type Mutation {
+    _empty: String
+  }
+`;
+
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  typeDefs: [baseTypes, postTypeDefs, usersTypeDefs],
+  resolvers: lodash.merge(postsResolver, usersResolver),
 });
 
 // Passing an ApolloServer instance to the `startStandaloneServer` function:
@@ -23,7 +37,7 @@ const { url } = await startStandaloneServer(server, {
     // dataSources: {
     //   userApi: new UserAPI(),
     // },
-    value: "context'ten gelen veriler burada."
+    value: "context'ten gelen veriler burada.",
   }),
 });
 
